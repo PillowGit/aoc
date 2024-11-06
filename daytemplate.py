@@ -2,10 +2,10 @@ from pathlib import Path
 from .. import utils as u
 
 def sln1(input):
-  return 1
+  return -1
 
 def sln2(input):
-  return 2
+  return -1
 
 if __name__ == '__main__':
   this_file = Path(__file__).resolve()
