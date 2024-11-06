@@ -20,4 +20,5 @@ if [ $YEAR -lt 2015 ]; then
 fi
 
 # Run the python main file at the path src/YEAR/DAY.py with python3 -m src.YEAR.DAY
+clear
 python3 -m src.$YEAR.$DAY
