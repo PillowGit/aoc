@@ -13,7 +13,7 @@ if __name__ == '__main__':
   input_file = this_file.parent / f'{day}.txt'
   
   # Use any parsing method here
-  parsed_input = input_file.read_text().strip()
+  parsed_input = None
 
   print('Part 1:', sln1(parsed_input))
   print('Part 2:', sln2(parsed_input))
