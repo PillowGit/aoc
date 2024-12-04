@@ -2,6 +2,12 @@ from pathlib import Path
 from .. import utils as u
 import regex as re
 
+# 1 lines (assuming input is called '3.txt' and exists where u run this from)
+# part 1
+print(sum(int(x) * int(y) for x, y in re.findall(r"mul\((\d{1,3}),(\d{1,3})\)", ''.join(open('3.txt').read().strip().split('\n')))))
+# part 2
+print([v:={'l':True,'s':0},[(lambda x,y:v.__setitem__('s',v['s']+((int(x)*int(y)) if v['l'] else 0)))(*match[:-1].split('(')[1].split(',')) if 'mul' in match else v.__setitem__('l',match=='do()') for match in re.findall(r"(mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\))", ''.join(open('3.txt').read().strip().split('\n')))],v['s']][-1])
+
 def sln1(input):
   ans = 0
   text = ''.join(input)
