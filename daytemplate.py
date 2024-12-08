@@ -1,5 +1,6 @@
 from pathlib import Path
 from .. import utils as u
+from rich import print
 
 def sln1(input):
   return -1
