@@ -3,16 +3,17 @@ from .. import utils as u
 from rich import print
 
 import regex as re
-import numpy as np
 
 def sln1(input):
   ans = 0
   chunks = re.split(r'\n\n', input)
   for chunk in chunks:
     ai, aj, bi, bj, ti, tj = map(int, re.findall(r'\d+', chunk))
-    l = np.array([[ai, bi], [aj, bj]])
-    r = np.array([ti, tj])
-    a_presses, b_presses = map(round, np.linalg.solve(l, r))
+    det = ai * bj - aj * bi
+    if det == 0:
+      continue
+    a_presses = round((bj * ti - bi * tj) / det)
+    b_presses = round((ai * tj - aj * ti) / det)
     if a_presses*ai + b_presses*bi == ti and a_presses*aj + b_presses*bj == tj:
       ans += a_presses*3 + b_presses
   return ans
@@ -24,9 +25,11 @@ def sln2(input):
     ai, aj, bi, bj, ti, tj = map(int, re.findall(r'\d+', chunk))
     ti += 10000000000000
     tj += 10000000000000
-    l = np.array([[ai, bi], [aj, bj]])
-    r = np.array([ti, tj])
-    a_presses, b_presses = map(round, np.linalg.solve(l, r))
+    det = ai * bj - aj * bi
+    if det == 0:
+      continue
+    a_presses = round((bj * ti - bi * tj) / det)
+    b_presses = round((ai * tj - aj * ti) / det)
     if a_presses*ai + b_presses*bi == ti and a_presses*aj + b_presses*bj == tj:
       ans += a_presses*3 + b_presses
   return ans
