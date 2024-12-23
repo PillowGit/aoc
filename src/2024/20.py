@@ -62,7 +62,44 @@ def sln1(input):
     
 
 def sln2(input):
-  return -1
+  start, end = None, None
+  for r in range(len(input)):
+    for c in range(len(input[r])):
+      if input[r][c] == 'S':
+        start = (r, c)
+      elif input[r][c] == 'E':
+        end = (r, c)
+  path, indices = [], {}
+  q = [(start, 0)]
+  while q:
+    (i, j), ind = q.pop()
+    indices[(i, j)] = ind
+    path.append((i, j))
+    if (i, j) == end:
+      break
+    for di, dj in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+      ni, nj = i + di, j + dj
+      if ni not in range(len(input)) or nj not in range(len(input[ni])):
+        continue
+      if input[ni][nj] == '#':
+        continue
+      if (ni, nj) in indices:
+        continue
+      q.append(((ni, nj), ind + 1))
+  
+  seconds = len(path) - 1
+  ans = 0
+  for i in range(seconds):
+    for j in range(i+1, len(path)):
+      a, b = path[i], path[j]
+      dist = abs(a[0] - b[0]) + abs(a[1] - b[1])
+      if dist > 20:
+        continue
+      cheat = (i + 1) + dist + (seconds - j - 1)
+      saved = (seconds - cheat)
+      if saved >= 100:
+        ans += 1
+  return ans
 
 if __name__ == '__main__':
   this_file = Path(__file__).resolve()
