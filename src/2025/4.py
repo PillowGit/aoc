@@ -2,6 +2,9 @@ from pathlib import Path
 from .. import utils as u
 from rich import print
 
+# One liner
+print([h:=[r:=(lambda g: [c:=[(r,c) for r in range(len(g)) for c in range(len(g[0])) if g[r][c]=='@'],t:=[([(r+dr, c+dc) for dr in [-1, 0, 1] for dc in [-1, 0, 1] if ((dr != 0 or dc != 0) and (r+dr) in range(len(g)) and (c+dc) in range(len(g[0])) and g[r+dr][c+dc] == '@')] + [(r,c)]) for r,c in c],gg:=list(filter(lambda x: len(x) < 5, t)),s:=set(x[-1] for x in gg),(len(gg),[[g[r][c] if (r,c) not in s else 'x' for c in range(len(g[0]))] for r in range(len(g))])][-1]),r([list(i) for i in open('/home/pillow/git-repos/aoc/src/2025/4.txt').read().strip().split('\n')])[0],sum([e:=[list(i) for i in open('/home/pillow/git-repos/aoc/src/2025/4.txt').read().strip().split('\n')],[[o:=r(e), e:=o[1], o[0]][-1] for _ in range(100)]][-1])], f'Part 1: {h[-2]}\nPart 2: {h[-1]}'][-1])
+
 def iterate(input, part2=False):
   removed = 0
   n, m = len(input), len(input[0])
