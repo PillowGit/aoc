@@ -17,12 +17,15 @@ def sln1(input):
   return sum(x[0] for x in ans)
 
 def sln2(input):
+  # Make grid
   g = [list(l) for l in input.split('\n')]
   w = max(len(row) for row in g)
+  # normalize rows
   for r in g:
     if len(r) < w: r.extend([' '] * (w - len(r)))
-  g = [list(row) for row in zip(*g)]
-  g = [''.join(row).rstrip() for row in g]
+  # transpose
+  g = [''.join(x).rstrip() for x in [list(row) for row in zip(*g)]]
+
   ans, curr, op = 0, 0, None
   for line in g:
     if line == '':
